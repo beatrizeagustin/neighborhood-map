@@ -30,7 +30,7 @@ class MapView extends Component {
     this.setMarkers(this.props.locations)
 
   }
-
+  // sets states for InfoWindow
   onMarkerClick = (props, marker, e) => {
     // opens markers and closes when new markers are opened
     this.onClose();
@@ -40,9 +40,9 @@ class MapView extends Component {
       showingInfoWindow: true
     })
   }
-
+  // resets InfoWindow
   onClose = props => {
-    // closes active markers
+    // closes active marker
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
@@ -55,25 +55,27 @@ class MapView extends Component {
   setMarkers = (locations) => {
     if (!locations)
     return;
-
+    // removes any existing markers on load
     this.state.markers.forEach(marker => marker.setMap(null));
 
     let markerProps = [];
-    // create new markers iterating through locations object
+    // create new markers iterating through locations (json) object
     let markers = locations.map((location, i) => {
       let mProps = {
         key: i,
         title: location.title,
         position: location.location
       };
+      // add new props to markerProps
       markerProps.push(mProps);
 
-      // make new markers object
+      // make new markers object with values from objects in location (in json)
       let marker = new this.props.google.maps.Marker({
         position: location.location,
         map: this.state.map,
         animation: this.props.google.maps.Animation.DROP
       });
+      // call onMarkerClick for new markers
       marker.addListener('click', () => {
         this.onMarkerClick(mProps, marker, null)
       });
@@ -94,6 +96,7 @@ class MapView extends Component {
     let amProps = this.state.currentMarkerProps;
 
     return (
+      {/* components from google-maps-react pkg */}
       <Map
         google={this.props.google}
         onReady={this.mapLoaded}
@@ -105,7 +108,6 @@ class MapView extends Component {
       >
     {/*   <Marker
         onClick={this.onMarkerClick}
-
         /> */}
         <InfoWindow
         marker={this.state.currentMarker}
