@@ -4,11 +4,30 @@ import SearchFilter from './views/SearchFilter'
 import './App.css';
 
 class App extends Component {
+
   state = {
     lat: 	37.786090,
     lng:  -122.453120,
     zoom: 15,
   }
+
+/*  constructor(props){
+        super(props);
+
+        this.locations = [
+            {title: 'Starbucks', location: {lat: 37.78609, lng: -122.453120}},
+            {title: 'Cal-Mart', location: {lat: 40.7444883, lng: -73.9949465}},
+            {title: 'Bryans', location: {lat: 37.786330, lng: -122.450830}},
+            {title: 'Papyrus', location: {lat: 37.786100, lng: -122.455860}},
+            {title: 'ACE Hardware', location: {lat: 37.786140, lng: -122.452330}}
+        ]
+    } */
+
+
+
+
+
+
 
   render() {
     return (
@@ -20,7 +39,8 @@ class App extends Component {
         <Map
           lat={this.state.lat}
           lng={this.state.lng}
-          zoom={this.state.zoom}/>
+          zoom={this.state.zoom}
+          />
         </section>
       </div>
     );
