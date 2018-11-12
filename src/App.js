@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     lat: 	37.786090,
     lng:  -122.453120,
-    zoom: 15,
+    zoom: 16,
     location: locations
   }
 

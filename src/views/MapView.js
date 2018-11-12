@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
+import {Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
 
 // tutorial from https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react
 // and theinfinitemonkey github
@@ -13,30 +13,16 @@ class MapView extends Component {
   state = {
     /* so no location markers applies to map during load */
     map: null,
-    marker: [],
+    markers: [],
     markerProps: [],
     currentMarker: null,
     currentMarkerProps: null,
-    selectedPlace: [],
     showingInfoWindow: false
   }
-
-/*  constructor(props){
-        super(props);
-
-        this.locations = [
-            {title: 'Starbucks', location: {lat: 37.78609, lng: -122.453120}},
-            {title: 'Cal-Mart', location: {lat: 40.7444883, lng: -73.9949465}},
-            {title: 'Bryans', location: {lat: 37.786330, lng: -122.450830}},
-            {title: 'Papyrus', location: {lat: 37.786100, lng: -122.455860}},
-            {title: 'ACE Hardware', location: {lat: 37.786140, lng: -122.452330}}
-        ]
-    } */
 
   componentDidMount = () => {
     console.log(this.props.locations)
   }
-
 
   // sets map state and markers for location
   mapLoaded = (props, map) => {
@@ -46,22 +32,22 @@ class MapView extends Component {
   }
 
   onMarkerClick = (props, marker, e) => {
-    // close active markers when new one opens
+    // opens markers and closes when new markers are opened
     this.onClose();
     this.setState({
       currentMarker: marker,
-      selectedPlace: props,
       currentMarkerProps: props,
       showingInfoWindow: true
     })
   }
 
   onClose = props => {
+    // closes active markers
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
+        currentMarkerProps: null,
         currentMarker: null,
-        selectedPlace: [],
       })
     }
   }
@@ -74,21 +60,21 @@ class MapView extends Component {
 
     let markerProps = [];
     // create new markers iterating through locations object
-    let markers = locations.map((location, index) => {
+    let markers = locations.map((location, i) => {
       let mProps = {
-        key: index,
+        key: i,
         title: location.title,
-        position: location.location,
+        position: location.location
       };
       markerProps.push(mProps);
 
-      // make markers
+      // make new markers object
       let marker = new this.props.google.maps.Marker({
         position: location.location,
         map: this.state.map,
-        animation: this.props.google.maps.Animation.Drop
+        animation: this.props.google.maps.Animation.DROP
       });
-      marker.addListner('click', () => {
+      marker.addListener('click', () => {
         this.onMarkerClick(mProps, marker, null)
       });
       return marker;
@@ -104,8 +90,8 @@ class MapView extends Component {
       lat: this.props.lat,
       lng: this.props.lng
     }
-
-    let amProps = this.state.activeMarkerProps;
+    // set currentMarkerProps to variable to avoid repetition
+    let amProps = this.state.currentMarkerProps;
 
     return (
       <Map

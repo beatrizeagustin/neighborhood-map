@@ -1,19 +1,19 @@
 [
   {
     "title": "Starbucks",
-    "location": {"lat": 37.78609, "lng": -122.453120}
+    "location": {"lat": 37.786091, "lng": -122.453117}
   },
   {
    "title": "Cal-Mart",
-   "location": {"lat": 40.7444883, "lng": -73.9949465}
+   "location": {"lat": 37.786381, "lng": -122.453033}
   },
   {
     "title": "Bryans",
     "location": {"lat": 37.786330, "lng": -122.450830}
   },
   {
-    "title": "Papyrus",
-    "location": {"lat": 37.786100, "lng": -122.455860}
+    "title": "Beautiful!",
+    "location": {"lat": 37.786631, "lng": -122.450222}
   },
   {
     "title": "ACE Hardware",
