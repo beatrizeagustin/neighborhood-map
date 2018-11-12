@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
+import {Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
 
 // tutorial from https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react
 // and theinfinitemonkey github
@@ -21,10 +21,6 @@ class MapView extends Component {
     showingInfoWindow: false
   }
 
-  componentDidMount = () => {
-
-  }
-
 /*  constructor(props){
         super(props);
 
@@ -36,13 +32,22 @@ class MapView extends Component {
             {title: 'ACE Hardware', location: {lat: 37.786140, lng: -122.452330}}
         ]
     } */
+
+  componentDidMount = () => {
+    console.log(this.props.locations)
+  }
+
+
   // sets map state and markers for location
   mapLoaded = (props, map) => {
     this.setState({map})
     this.setMarkers(this.props.locations)
+
   }
 
   onMarkerClick = (props, marker, e) => {
+    // close active markers when new one opens
+    this.onClose();
     this.setState({
       currentMarker: marker,
       selectedPlace: props,
@@ -68,8 +73,8 @@ class MapView extends Component {
     this.state.markers.forEach(marker => marker.setMap(null));
 
     let markerProps = [];
-
-    let markers = this.props.locations.map((location, index) => {
+    // create new markers iterating through locations object
+    let markers = locations.map((location, index) => {
       let mProps = {
         key: index,
         title: location.title,
@@ -77,12 +82,11 @@ class MapView extends Component {
       };
       markerProps.push(mProps);
 
-      let animation = this.props.google.maps.Animation.Drop;
       // make markers
       let marker = new this.props.google.maps.Marker({
         position: location.location,
         map: this.state.map,
-        animation: animation
+        animation: this.props.google.maps.Animation.Drop
       });
       marker.addListner('click', () => {
         this.onMarkerClick(mProps, marker, null)
@@ -113,9 +117,9 @@ class MapView extends Component {
         style={styles}
         initialCenter={center}
       >
-    {/*    <Marker
+    {/*   <Marker
         onClick={this.onMarkerClick}
-        name={'hello'}
+
         /> */}
         <InfoWindow
         marker={this.state.currentMarker}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Map from './views/MapView'
 import SearchFilter from './views/SearchFilter'
+import locations from './data/locations.json'
 import './App.css';
 
 class App extends Component {
@@ -9,9 +10,10 @@ class App extends Component {
     lat: 	37.786090,
     lng:  -122.453120,
     zoom: 15,
+    location: locations
   }
 
-/*  constructor(props){
+/* constructor(props){
         super(props);
 
         this.locations = [
@@ -22,12 +24,6 @@ class App extends Component {
             {title: 'ACE Hardware', location: {lat: 37.786140, lng: -122.452330}}
         ]
     } */
-
-
-
-
-
-
 
   render() {
     return (
@@ -40,6 +36,7 @@ class App extends Component {
           lat={this.state.lat}
           lng={this.state.lng}
           zoom={this.state.zoom}
+          locations={this.state.location}
           />
         </section>
       </div>
