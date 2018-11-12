@@ -1,11 +1,15 @@
 [
   {
+   "title": "Walgreens Pharmacy",
+   "location": {"lat": 37.786316, "lng": -122.453545}
+  },
+  {
     "title": "Starbucks",
     "location": {"lat": 37.786091, "lng": -122.453117}
   },
   {
-   "title": "Cal-Mart",
-   "location": {"lat": 37.786381, "lng": -122.453033}
+    "title": "ACE Hardware",
+    "location": {"lat": 37.786140, "lng": -122.452330}
   },
   {
     "title": "Bryans",
@@ -14,8 +18,5 @@
   {
     "title": "Beautiful!",
     "location": {"lat": 37.786631, "lng": -122.450222}
-  },
-  {
-    "title": "ACE Hardware",
-    "location": {"lat": 37.786140, "lng": -122.452330}}
+  }
 ]
