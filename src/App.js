@@ -7,8 +7,8 @@ import './App.css';
 class App extends Component {
 
   state = {
-    lat: 	37.786090,
-    lng:  -122.453120,
+    lat: 	37.786424,
+    lng:  -122.451802,
     zoom: 16,
     location: locations
   }
