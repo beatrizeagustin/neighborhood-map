@@ -13,13 +13,28 @@ class SearchMenu extends Component {
   render() {
     return (
       <div id='searchMenu'>
+      {/* Toggle component  */}
         <ToggleButton
           toggleOpen={this.props.toggleOpen}/>
-
+      {/* Menu */}
         <div id='menu-wrap' className="menu-wrap">
           <div className="menu-sidebar">
+            <input
+              className="searchInput"
+              onChange={e => this.updateQuery(e.target.value)}
+              value={this.state.query}
+              type="text"
+              placeholder="Filter Search"
+              name="filter"/>
+            {/* results */}
             <ul className="menu">
-              <li><a href="#"><i className="material-icons">account_circle</i>home</a></li>
+              {this.props.locations && this.props.locations.map((location, i) => {
+                return (
+                  <li key={i}>
+                    <button key={i}>{location.name}</button>
+                  </li>
+                )
+              })}
             </ul>
           </div>
         </div>
