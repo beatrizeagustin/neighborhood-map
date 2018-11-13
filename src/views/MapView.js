@@ -20,7 +20,7 @@ class MapView extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props.locations)
+  //  console.log(this.props.locations)
   }
 
   // sets map state and markers for location
@@ -145,7 +145,7 @@ class MapView extends Component {
     // set currentMarkerProps to variable to avoid repetition
     // ******* amProps is null
     let amProps = this.state.currentMarkerProps;
-    console.log(amProps)
+  //  console.log(amProps)
     return (
       // components from google-maps-react pkg
       <Map
@@ -165,10 +165,7 @@ class MapView extends Component {
                 title={location.name}
                 position={location.location}
               />
-			))}
-       <Marker
-        onClick={this.onMarkerClick}
-        /> */}
+			))} */}
         <InfoWindow
         marker={this.state.currentMarker}
         visible={this.state.showingInfoWindow}
@@ -177,7 +174,7 @@ class MapView extends Component {
           <div>
             {/* compare data from json to FS and use json as fallback */}
             <h4>{amProps && amProps.name}</h4>
-            {amProps && amProps.url ? (<a href={amProps.url}>site</a>) : ''}
+            {/* amProps && amProps.url ? (<a href={amProps.url}>site</a>) : '' */}
             {amProps && amProps.images ? (<div>
               <img
                 alt={amProps.name + " food picture"}
