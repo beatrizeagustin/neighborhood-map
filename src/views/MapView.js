@@ -85,7 +85,7 @@ class MapView extends Component {
 
   // resets InfoWindow
   onClose = props => {
-    // closes active marker
+    // closes active marker and stops animations
     if (this.state.showingInfoWindow) {
       this.state.currentMarker.setAnimation(null);
       this.setState({
@@ -142,6 +142,7 @@ class MapView extends Component {
       height: '75%'
     }
     // set currentMarkerProps to variable to avoid repetition
+    // ******* amProps is null
     let amProps = this.state.currentMarkerProps;
     console.log(amProps)
     return (
@@ -161,7 +162,6 @@ class MapView extends Component {
                 key={i}
                 onClick={this.onMarkerClick}
                 title={location.name}
-                photo={location.images}
                 position={location.location}
               />
 			))}
@@ -176,6 +176,12 @@ class MapView extends Component {
           <div>
             <h4>{amProps && amProps.title}</h4>
             {amProps && amProps.url ? (<a href={amProps.url}>site</a>) : ''}
+            {amProps && amProps.images ? (<div>
+              <img
+                alt={amProps.name + " food picture"}
+                src={amProps.images.items[0].prefix + "100x100" + amProps.images.items[0].suffix}/>
+                <p>Image from Foursquare</p>
+              </div>) : ""}
           </div>
         </InfoWindow>
       </Map>
