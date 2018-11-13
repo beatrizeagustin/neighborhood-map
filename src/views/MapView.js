@@ -33,7 +33,7 @@ class MapView extends Component {
   getVenueInfo = (props, data) => {
     // compare FS data to markers
     return data.response.venues.filter(item =>
-      item.title.includes(props.title) || props.title.includes(item.title));
+      item.name.includes(props.name) || props.name.includes(item.name));
   }
   // sets states for InfoWindow
   onMarkerClick = (props, marker, e) => {
@@ -158,7 +158,7 @@ class MapView extends Component {
               <Marker
                 key={i}
                 onClick={this.onMarkerClick}
-                title={location.title}
+                title={location.name}
                 photo={amProps.images}
                 position={location.location}
               />
