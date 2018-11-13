@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import {Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
+import {Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
 
 // tutorial from https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react
 // and theinfinitemonkey github
-
-const styles = {
-  width: '100%',
-  height: '75%'
-}
 
 const CLIENT = 'SA2AQBFNTHGTHOPWTWS3PHGCL3UGMRHEQPXRS3HEUYW2SS2Y'
 const CLSECRET = 'NXS5NOFZJQGTCWKJJ10HG2DXDRJXPT5W3QZMCKNHFVGAL5BJ'
@@ -31,7 +26,7 @@ class MapView extends Component {
   // sets map state and markers for location
   mapLoaded = (props, map) => {
     this.setState({map})
-    this.setMarkers(this.props.locations)
+  //  this.setMarkers(this.props.locations)
 
   }
   // sets states for InfoWindow
@@ -56,7 +51,7 @@ class MapView extends Component {
     }
   }
 
-  setMarkers = (locations) => {
+/*  setMarkers = (locations) => {
     if (!locations)
     return;
     // removes any existing markers on load
@@ -89,12 +84,17 @@ class MapView extends Component {
       markers,
       markerProps
     })
-  }
+  } */
 
   render() {
     const center = {
       lat: this.props.lat,
       lng: this.props.lng
+    }
+
+    const styles = {
+      width: '100%',
+      height: '75%'
     }
     // set currentMarkerProps to variable to avoid repetition
     let amProps = this.state.currentMarkerProps;
@@ -110,6 +110,14 @@ class MapView extends Component {
         style={styles}
         initialCenter={center}
       >
+      {this.props.locations.map((location, i) => (
+              <Marker
+                key={i}
+                onClick={this.onMarkerClick}
+                title={location.title}
+                position={location.location}
+              />
+			))}
     {/*   <Marker
         onClick={this.onMarkerClick}
         /> */}
