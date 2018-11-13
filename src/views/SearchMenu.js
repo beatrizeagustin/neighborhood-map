@@ -19,7 +19,7 @@ class SearchMenu extends Component {
           <div className="menu-bar bar-bottom"></div>
         </span>
 
-        <div className="menu-wrap">
+        <div id='menu-wrap' className="menu-wrap">
           <div className="menu-sidebar">
             <ul className="menu">
               <li><a href="#"><i className="material-icons">account_circle</i>home</a></li>

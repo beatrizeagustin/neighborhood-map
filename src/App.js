@@ -26,7 +26,9 @@ class App extends Component {
     } */
   toggleOpen = () => {
     let toggleButton = document.getElementById('toggle-button').classList
+    let menu = document.getElementById('menu-wrap').classList
         toggleButton.toggle('open');
+        menu.toggle('menu-open');
   }
 
   render() {
