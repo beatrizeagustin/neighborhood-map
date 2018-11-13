@@ -24,6 +24,10 @@ class App extends Component {
             {title: 'ACE Hardware', location: {lat: 37.786140, lng: -122.452330}}
         ]
     } */
+  toggleOpen = () => {
+    let toggleButton = document.getElementById('toggle-button').classList
+        toggleButton.toggle('open');
+  }
 
   render() {
     return (
@@ -41,7 +45,8 @@ class App extends Component {
         </section>
         <section>
          <SearchMenu
-            locations={this.state.location}/>
+            locations={this.state.location}
+            toggleOpen={this.toggleOpen}/>
         </section>
       </div>
     );
