@@ -31,7 +31,10 @@ class SearchMenu extends Component {
               {this.props.locations && this.props.locations.map((location, i) => {
                 return (
                   <li key={i}>
-                    <button key={i}>{location.name}</button>
+                    <button
+                      key={i}
+                      className="locationBtn">
+                        {location.name}</button>
                   </li>
                 )
               })}

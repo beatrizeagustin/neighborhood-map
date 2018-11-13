@@ -78,7 +78,7 @@ ul li a {
 
 /* MENU */
 .menu-wrap {
-    background-color: #2366BB;
+    background-color: #333333;
     position: fixed;
     top: 0;
     left: 0;
@@ -122,5 +122,28 @@ i {
   position: relative;
   top: 4px;
   padding-right: 15px;
+}
+
+.menu-sidebar {
+  margin: 100px 10px;
+}
+
+.searchInput {
+  width: calc((100% - 5px));
+  height: 30px;
+  font-size: 1.5em
+}
+
+.locationBtn {
+  font-size: 1em;
+  text-align: left;
+  margin: 2px;
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+
+.locationBtn:hover {
+  cursor: pointer;
 }
 /* END MENU */
