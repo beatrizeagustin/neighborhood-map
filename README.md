@@ -1,44 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Development Strategy
+It's very important that you plan your project before you start writing any code. Break your project down into small pieces of work and plan out your approach to each one. It's much easier to debug and fix an issue if you've only made a small change. It becomes much harder if you wait longer to test your code. You don't build a house all at once, but brick-by-brick.
 
-## Available Scripts
+Feel free to implement your own design workflow, but if you get stuck -- here are some quick tips to get started. The following verbiage reflects usage of the Google Maps API, but note that you may use another Map API system aside from Google Maps (e.g., Leaflet) for this project (please provide an explanation of which mapping system you used, and how you are using in in your project with comments or in your README).
 
-In the project directory, you can run:
+##Obtain a Google Maps API key.
+  -Be sure to include it as the value of the key parameter when loading the Google Maps API.
+  -You may have some initial concerns with placing your API key directly within your JavaScript source files, but rest assured this is perfectly safe. All client-side code must be downloaded by the client; therefore, the client must download this API key (it is not intended to be secret). Google has security measures in place to ensure your key is not abused. Note that it is not technically possible to make anything secret on the client-side.
+  -Add a full-screen map to your page using the Google Maps API.
+  -For the sake of efficiency, the map API should be called only once
+  -With your Google Maps API key and a props object, how can you generate a valid URL to a static Google Maps image? Would writing a function work well for this? What would that function return?
+  -Write code required to display map markers identifying at least 5 locations that you are interested in within this neighborhood.
+  -Your app should display those locations by default when the page is loaded.
+  -Implement a list view of the set of locations you have defined.
+  -Provide a filter option (e.g., a text field or dropdown menu) that uses an input field to filter both:
 
-### `npm start`
+##The list view
+  -The map markers displayed by default on load. The list view and the markers should update accordingly in real time.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  Note: Providing a search function through a third-party API is not enough to meet specifications.
+  -Add functionality using third-party APIs to provide information when a map marker or list view entry is clicked (e.g., Yelp reviews, Wikipedia, Flickr images, etc).
+  -StreetView and Places do not count as an additional 3rd party API because they are libraries included in the Google Maps API
+  -If you need a refresher on how to make Ajax requests to third-party servers, check out Intro to Ajax
+  -Please provide attribution to the data sources and/or APIs you use (e.g., if you are using Foursquare, indicate somewhere in your interface and in your README that you used Foursquare's API)
+  -Be sure that all application components (i.e., a search box, a list view, and the map) render on-screen in a responsive manner.
+  -The design is completely up to you regardless of the viewport size (e.g., maybe the list view is viewable from a hamburger menu on mobile) -- but all components must still render and be fully functional.
+  -Any additional components added to the project must also render and be fully functional.
+  -Overall, the application's interface should be intuitive to use. Here are a few examples of how to make the experience straightforward for your user:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+  -The input text area to filter locations should be easy to locate
+  -It should be simple to understand which set of locations is being filtered
+  -Selecting a location via list item or map marker should cause the map marker to bounce, or in some other way animate. This indicates that the location has been selected, and an associated info window should open above the map marker with additional information
 
-### `npm test`
+##Asynchronicity and Error Handling
+  -All data API's used in the application should load asynchronously, and errors should be handled gracefully. In case of error (e.g., a situation in which a third party API does not return the expected result), we expect your webpage to do one of the following:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  -A message is displayed that notifies the user that the data cannot be loaded
+  -There are no negative repercussions to the UI
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+  Note: You should handle errors if the browser has trouble initially reaching the third-party site as well. For example, consider a user using your Neighborhood Map, but the user's firewall prevents him/her from accessing the Instagram servers.
