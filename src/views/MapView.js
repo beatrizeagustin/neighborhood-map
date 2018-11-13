@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
+import { GoogleApiWrapper, Map, InfoWindow } from 'google-maps-react'
 
 // tutorial from https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react
 // and theinfinitemonkey github
@@ -26,7 +26,7 @@ class MapView extends Component {
   // sets map state and markers for location
   mapLoaded = (props, map) => {
     this.setState({map})
-  //  this.setMarkers(this.props.locations)
+    this.setMarkers(this.props.locations)
 
   }
 
@@ -40,7 +40,8 @@ class MapView extends Component {
     // opens markers and closes when new markers are opened
     this.onClose();
     // fetch FS data for photos
-    let position = this.props.locations.location
+    // ***** remove position, follow where props is coming
+   //  let position = this.props.locations.location
     let url = `https://api.foursquare.com/v2/venues/search?client_id=${FSCLIENT}&client_secret=${FSSECRET}&v=${FSVERSION}&radius=100&ll=${props.position.lat},${props.position.lng}&llAcc=100`
     let headers = new Headers();
 		let request = new Request(url, {
@@ -68,15 +69,15 @@ class MapView extends Component {
               marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
               this.setState({
                 currentMarker: marker,
-                currentMarkerProps: props,
-                showingInfoWindow: true });
+                showingInfoWindow: true,
+                currentMarkerProps });
           });
         } else {
           marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
           this.setState({
             currentMarker: marker,
-            currentMarkerProps: props,
-            showingInfoWindow: true
+            showingInfoWindow: true,
+            currentMarkerProps
           })
         }
       });
@@ -96,7 +97,7 @@ class MapView extends Component {
     }
   }
 
-/*  setMarkers = (locations) => {
+ setMarkers = (locations) => {
     if (!locations)
     return;
     // removes any existing markers on load
@@ -107,7 +108,7 @@ class MapView extends Component {
     let markers = locations.map((location, i) => {
       let mProps = {
         key: i,
-        title: location.title,
+        name: location.name,
         position: location.location
       };
       // add new props to markerProps
@@ -129,7 +130,7 @@ class MapView extends Component {
       markers,
       markerProps
     })
-  } */
+  }
 
   render() {
     const center = {
@@ -156,7 +157,7 @@ class MapView extends Component {
         style={styles}
         initialCenter={center}
       >
-      {/* iterate through locations to create markers */}
+      {/* iterate through locations to create markers
       {this.props.locations.map((location, i) => (
               <Marker
                 key={i}
@@ -165,7 +166,7 @@ class MapView extends Component {
                 position={location.location}
               />
 			))}
-      {/* <Marker
+       <Marker
         onClick={this.onMarkerClick}
         /> */}
         <InfoWindow
@@ -174,7 +175,8 @@ class MapView extends Component {
         onClose={this.onClose}
         >
           <div>
-            <h4>{amProps && amProps.title}</h4>
+            {/* compare data from json to FS and use json as fallback */}
+            <h4>{amProps && amProps.name}</h4>
             {amProps && amProps.url ? (<a href={amProps.url}>site</a>) : ''}
             {amProps && amProps.images ? (<div>
               <img
