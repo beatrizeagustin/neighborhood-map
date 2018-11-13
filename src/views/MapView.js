@@ -40,7 +40,8 @@ class MapView extends Component {
     // opens markers and closes when new markers are opened
     this.onClose();
     // fetch FS data for photos
-    let url = `https://api.foursquare.com/v2/venues/search?client_id=${FSCLIENT}&client_secret=${FSSECRET}&v=${FSVERSION}&radius=100&ll=${props.location.lat},${props.location.lng}&llAcc=100`
+    let position = this.props.locations.location
+    let url = `https://api.foursquare.com/v2/venues/search?client_id=${FSCLIENT}&client_secret=${FSSECRET}&v=${FSVERSION}&radius=100&ll=${props.position.lat},${props.position.lng}&llAcc=100`
     let headers = new Headers();
 		let request = new Request(url, {
 			method: 'GET',
@@ -68,7 +69,7 @@ class MapView extends Component {
               this.setState({
                 currentMarker: marker,
                 currentMarkerProps: props,
-                showingInfoWindow: true});
+                showingInfoWindow: true });
           });
         } else {
           marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
@@ -86,6 +87,7 @@ class MapView extends Component {
   onClose = props => {
     // closes active marker
     if (this.state.showingInfoWindow) {
+      this.state.currentMarker.setAnimation(null);
       this.setState({
         showingInfoWindow: false,
         currentMarkerProps: null,
@@ -159,7 +161,7 @@ class MapView extends Component {
                 key={i}
                 onClick={this.onMarkerClick}
                 title={location.name}
-                photo={amProps.images}
+                photo={location.images}
                 position={location.location}
               />
 			))}
