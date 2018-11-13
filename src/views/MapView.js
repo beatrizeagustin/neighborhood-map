@@ -4,9 +4,9 @@ import {Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
 // tutorial from https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react
 // and theinfinitemonkey github
 
-const CLIENT = 'SA2AQBFNTHGTHOPWTWS3PHGCL3UGMRHEQPXRS3HEUYW2SS2Y'
-const CLSECRET = 'NXS5NOFZJQGTCWKJJ10HG2DXDRJXPT5W3QZMCKNHFVGAL5BJ'
-const VERSION = '20181112'
+const FSCLIENT = '11HUZWWZBSADCCJDO1P0KMUPT142BN4JIAMO4BKNEO03KAD2'
+const FSSECRET = 'ST31PITHE3B31A2FHGCXFLN2GGEVXHGBZCWAXYHHSGXT5NNC'
+const FSVERSION = '20181112'
 
 class MapView extends Component {
   state = {
@@ -29,16 +29,34 @@ class MapView extends Component {
   //  this.setMarkers(this.props.locations)
 
   }
+
+  getVenueInfo = (props, data) => {
+    // compare FS data to markers
+    return data.response.venues.filter(item =>
+      item.name.includes(props.title) || props.title.includes(item.title));
+  }
   // sets states for InfoWindow
   onMarkerClick = (props, marker, e) => {
     // opens markers and closes when new markers are opened
     this.onClose();
-    this.setState({
+    // fetch FS data for photos
+    let url = 'https://api.foursquare.com/v2/venues/search?client_id=${FSCLIENT}&client_secret=${FSSECRET}&v=${FSVERSION}&radius=100&ll=${props.position.lat},${props.position.lng}&llAcc=100`'
+    let headers = new Headers();
+		let request = new Request(url, {
+			method: 'GET',
+			headers
+  /*  this.setState({
       currentMarker: marker,
       currentMarkerProps: props,
-      showingInfoWindow: true
-    })
+      showingInfoWindow: true */
+    });
+      // *** Needs work -- read FS DOC
+      let currentMarkerProps
+      fetch(request).then(response => response.json()).then(result => {
+
+      })
   }
+
   // resets InfoWindow
   onClose = props => {
     // closes active marker
@@ -110,15 +128,17 @@ class MapView extends Component {
         style={styles}
         initialCenter={center}
       >
+      {/* iterate through locations to create markers */}
       {this.props.locations.map((location, i) => (
               <Marker
                 key={i}
                 onClick={this.onMarkerClick}
                 title={location.title}
+                photo={location.photo}
                 position={location.location}
               />
 			))}
-    {/*   <Marker
+      {/* <Marker
         onClick={this.onMarkerClick}
         /> */}
         <InfoWindow
