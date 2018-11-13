@@ -40,22 +40,47 @@ class MapView extends Component {
     // opens markers and closes when new markers are opened
     this.onClose();
     // fetch FS data for photos
-    let url = 'https://api.foursquare.com/v2/venues/search?client_id=${FSCLIENT}&client_secret=${FSSECRET}&v=${FSVERSION}&radius=100&ll=${props.position.lat},${props.position.lng}&llAcc=100`'
+    let url = `https://api.foursquare.com/v2/venues/search?client_id=${FSCLIENT}&client_secret=${FSSECRET}&v=${FSVERSION}&radius=100&ll=${props.location.lat},${props.location.lng}&llAcc=100`
     let headers = new Headers();
 		let request = new Request(url, {
 			method: 'GET',
 			headers
-  /*  this.setState({
-      currentMarker: marker,
-      currentMarkerProps: props,
-      showingInfoWindow: true */
     });
       // *** Needs work -- read FS DOC
       let currentMarkerProps
       fetch(request).then(response => response.json()).then(result => {
-
-      })
+        let shops = this.getVenueInfo(props, result);
+        currentMarkerProps = {
+          ...props,
+          foursquare: shops[0]
+        };
+        // setting state for data and get images for each shop
+        if (currentMarkerProps.foursquare) {
+          let url = `https://api.foursquare.com/v2/venues/${shops[0].id}/photos?client_id=${FSCLIENT}&client_secret=${FSSECRET}&v=${FSVERSION}`
+          fetch(url).then(response => response.json()).then(result => {
+            currentMarkerProps = {
+              ...currentMarkerProps,
+              images: result.response.photos
+            };
+            if (this.state.currentMarker)
+              this.state.currentMarker.setAnimation(null);
+              marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+              this.setState({
+                currentMarker: marker,
+                currentMarkerProps: props,
+                showingInfoWindow: true});
+          });
+        } else {
+          marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+          this.setState({
+            currentMarker: marker,
+            currentMarkerProps: props,
+            showingInfoWindow: true
+          })
+        }
+      });
   }
+
 
   // resets InfoWindow
   onClose = props => {
@@ -116,7 +141,7 @@ class MapView extends Component {
     }
     // set currentMarkerProps to variable to avoid repetition
     let amProps = this.state.currentMarkerProps;
-
+    console.log(amProps)
     return (
       // components from google-maps-react pkg
       <Map
@@ -134,7 +159,7 @@ class MapView extends Component {
                 key={i}
                 onClick={this.onMarkerClick}
                 title={location.title}
-                photo={location.photo}
+                photo={amProps.images}
                 position={location.location}
               />
 			))}
