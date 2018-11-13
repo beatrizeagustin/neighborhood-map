@@ -39,6 +39,10 @@ class App extends Component {
           locations={this.state.location}
           />
         </section>
+        <section>
+          <SearchMenu
+            locations={this.state.location}/>
+        </section>
       </div>
     );
   }

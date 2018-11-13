@@ -39,9 +39,8 @@ class MapView extends Component {
   onMarkerClick = (props, marker, e) => {
     // opens markers and closes when new markers are opened
     this.onClose();
-    // fetch FS data for photos
-    // ***** remove position, follow where props is coming
-   //  let position = this.props.locations.location
+    // create request obj and fetch FS data for photos
+    // let position = this.props.locations.location
     let url = `https://api.foursquare.com/v2/venues/search?client_id=${FSCLIENT}&client_secret=${FSSECRET}&v=${FSVERSION}&radius=100&ll=${props.position.lat},${props.position.lng}&llAcc=100`
     let headers = new Headers();
 		let request = new Request(url, {
@@ -50,7 +49,10 @@ class MapView extends Component {
     });
       // *** Needs work -- read FS DOC
       let currentMarkerProps
+      // fetch request and take response/data
       fetch(request).then(response => response.json()).then(result => {
+        // compare data to locations.name in json and pass into shops
+        // make shops into new foursquare data
         let shops = this.getVenueInfo(props, result);
         currentMarkerProps = {
           ...props,
@@ -62,8 +64,10 @@ class MapView extends Component {
           fetch(url).then(response => response.json()).then(result => {
             currentMarkerProps = {
               ...currentMarkerProps,
+              // add new property 'images' with photo
               images: result.response.photos
             };
+            // set states with new currentMarkerProps
             if (this.state.currentMarker)
               this.state.currentMarker.setAnimation(null);
               marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
