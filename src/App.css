@@ -2,7 +2,7 @@
   width: 100%;
   height: 50%;
 }
-
+/* TOGGLE BUTTON */
 .toggle-button {
   position: absolute;
   width: 20px;
@@ -38,3 +38,26 @@
   border-top: none;
   top: 22px;
 }
+
+
+.open .bar-top {
+  transform: rotate(45deg) translate(8px, 8px);
+  transition: .5s;
+  border-color: #fff;
+}
+
+.open .bar-middle {
+  transition: .3s ease-in;
+  opacity: 0;
+}
+
+.open .bar-bottom {
+  transform: rotate(-45deg) translate(8px, -7px);
+  transition: .5s;
+  border-color: #fff;
+}
+
+.open .toggle-button {
+  transform: translateX(270px);
+}
+/* END TOGGLE BUTTON */
