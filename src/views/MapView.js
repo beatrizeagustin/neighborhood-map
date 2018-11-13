@@ -9,6 +9,10 @@ const styles = {
   height: '75%'
 }
 
+const CLIENT = 'SA2AQBFNTHGTHOPWTWS3PHGCL3UGMRHEQPXRS3HEUYW2SS2Y'
+const CLSECRET = 'NXS5NOFZJQGTCWKJJ10HG2DXDRJXPT5W3QZMCKNHFVGAL5BJ'
+const VERSION = '20181112'
+
 class MapView extends Component {
   state = {
     /* so no location markers applies to map during load */
@@ -96,7 +100,7 @@ class MapView extends Component {
     let amProps = this.state.currentMarkerProps;
 
     return (
-      {/* components from google-maps-react pkg */}
+      // components from google-maps-react pkg
       <Map
         google={this.props.google}
         onReady={this.mapLoaded}
