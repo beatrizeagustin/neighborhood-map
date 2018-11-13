@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ToggleButton from '../Components/ToggleButton'
 
 class SearchMenu extends Component {
   state = {
@@ -12,12 +13,8 @@ class SearchMenu extends Component {
   render() {
     return (
       <div id='searchMenu'>
-        {/* hamburger animated icon */}
-        <span id="toggle-button" className="toggle-button" onClick={this.props.toggleOpen}>
-          <div className="menu-bar bar-top"></div>
-          <div className="menu-bar bar-middle"></div>
-          <div className="menu-bar bar-bottom"></div>
-        </span>
+        <ToggleButton
+          toggleOpen={this.props.toggleOpen}/>
 
         <div id='menu-wrap' className="menu-wrap">
           <div className="menu-sidebar">

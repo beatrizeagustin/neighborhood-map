@@ -34,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
+        <div className="App-title">
           <h1>Laurel Village Neighborhood Shops</h1>
         </div>
         <section id='map'>
