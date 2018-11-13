@@ -2,3 +2,39 @@
   width: 100%;
   height: 50%;
 }
+
+.toggle-button {
+  position: absolute;
+  width: 20px;
+  height: 40px;
+  padding: 4px;
+  transition: .25s;
+  z-index: 100;
+}
+
+.toggle-button .menu-bar {
+  position: absolute;
+  border-radius: 2px;
+  width: 80%;
+  transition: .5s;
+}
+
+.toggle-button .bar-top {
+  border: 4px solid #000;
+  border-bottom: none;
+  top: 0;
+}
+
+.toggle-button .bar-middle {
+  border: 4px solid #000;
+  border-bottom: none;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  top: 4px;
+}
+
+.toggle-button .bar-bottom {
+  border: 4px solid #000;
+  border-top: none;
+  top: 22px;
+}

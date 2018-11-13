@@ -147,7 +147,7 @@ class MapView extends Component {
       height: '75%'
     }
     // set currentMarkerProps to variable to avoid repetition
-    // ******* amProps is null
+    // ******* amProps is null - either from keys or animation
     let amProps = this.state.currentMarkerProps;
   //  console.log(amProps)
     return (
@@ -176,7 +176,7 @@ class MapView extends Component {
         onClose={this.onClose}
         >
           <div>
-            {/* compare data from json to FS and use json as fallback */}
+            {/* compare data from json to FS and use json as fallback? */}
             <h4>{amProps && amProps.name}</h4>
             {/* amProps && amProps.url ? (<a href={amProps.url}>site</a>) : '' */}
             {amProps && amProps.images ? (<div>

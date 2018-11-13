@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Map from './views/MapView'
-import SearchFilter from './views/SearchFilter'
+import SearchMenu from './views/SearchMenu'
 import locations from './data/locations.json'
 import './App.css';
 
@@ -40,7 +40,7 @@ class App extends Component {
           />
         </section>
         <section>
-          <SearchMenu
+         <SearchMenu
             locations={this.state.location}/>
         </section>
       </div>
