@@ -39,6 +39,7 @@ class App extends Component {
     let menu = document.getElementById('menu-wrap').classList
         toggleButton.toggle('open');
         menu.toggle('menu-open');
+    if (document.body.classList.contains('open'))
     this.setState({
       // sets opposite of open's state
       open: !this.state.open
@@ -74,11 +75,11 @@ class App extends Component {
         </div>
         <section id="SearchMenu">
         <SearchMenu
-          open={this.state.open}
           locations={this.state.filtered}
           toggleOpen={this.toggleOpen}
           filtering={this.updateQuery}
           clickList={this.clickList}
+          open={this.state.open}
           />
         </section>
         <section id='map'>

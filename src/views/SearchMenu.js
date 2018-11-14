@@ -3,8 +3,8 @@ import ToggleButton from '../Components/ToggleButton'
 
 class SearchMenu extends Component {
   state = {
-    open: false,
-    query: ''
+    query: '',
+    open: false
   }
 
 

@@ -41,8 +41,7 @@ class MapView extends Component {
     if (props.indexKey === null || typeof(props.indexKey) === "undefined") {
       return;
     };
-    // if theres an indexKey, call onMarkerClick with both indexKey
-    
+    // if theres an indexKeys matching, call onMarkerClick to open InfoWindow
     this.onMarkerClick(this.state.markerProps[props.indexKey], this.state.markers[props.indexKey]);
    }
 
