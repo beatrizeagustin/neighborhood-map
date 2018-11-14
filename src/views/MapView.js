@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { GoogleApiWrapper, Map, InfoWindow } from 'google-maps-react'
 
 // tutorial from https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react
-// and theinfinitemonkey github
+// and theinfinitemonkey @ github
 
 const FSCLIENT = '11HUZWWZBSADCCJDO1P0KMUPT142BN4JIAMO4BKNEO03KAD2'
 const FSSECRET = 'ST31PITHE3B31A2FHGCXFLN2GGEVXHGBZCWAXYHHSGXT5NNC'
@@ -34,7 +34,7 @@ class MapView extends Component {
     }
     // if item is not the same as the active marker, close the info window
     if (!props.indexKey || (this.state.currentMarker &&
-      (this.state.markers[props.indexKey] !== this.state.indexKey))) {
+      (this.state.markers[props.indexKey] !== this.state.currentMarker))) {
         this.onClose();
       }
     // make sure there's an indexKey
@@ -42,6 +42,7 @@ class MapView extends Component {
       return;
     };
     // if theres an indexKey, call onMarkerClick with both indexKey
+    
     this.onMarkerClick(this.state.markerProps[props.indexKey], this.state.markers[props.indexKey]);
    }
 
@@ -92,12 +93,14 @@ class MapView extends Component {
             // set states with new currentMarkerProps
             if (this.state.currentMarker)
               this.state.currentMarker.setAnimation(null);
+              marker.setAnimation(this.props.google.maps.Animation.DROP);
               this.setState({
                 currentMarker: marker,
                 showingInfoWindow: true,
                 currentMarkerProps });
           });
         } else {
+          marker.setAnimation(this.props.google.maps.Animation.DROP)
           this.setState({
             currentMarker: marker,
             showingInfoWindow: true,
@@ -112,7 +115,7 @@ class MapView extends Component {
   onClose = props => {
     // closes active marker and stops animations
     if (this.state.showingInfoWindow) {
-    //  this.state.currentMarker.setAnimation(null);
+     this.state.currentMarker.setAnimation(null);
       this.setState({
         showingInfoWindow: false,
         currentMarkerProps: null,

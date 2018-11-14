@@ -45,7 +45,7 @@ class App extends Component {
     })
 
   }
-  // update query and adding filtered locations
+  // update query and adding filtered locations, indexKey
   updateQuery = (query) => {
     this.setState({
       ...this.state,
@@ -62,7 +62,8 @@ class App extends Component {
   clickList = (index) => {
     this.setState({
       indexKey: index,
-      open: !this.state.open})
+      open: !this.state.open
+      })
   }
 
   render() {
@@ -73,11 +74,12 @@ class App extends Component {
         </div>
         <section id="SearchMenu">
         <SearchMenu
+          open={this.state.open}
           locations={this.state.filtered}
           toggleOpen={this.toggleOpen}
           filtering={this.updateQuery}
           clickList={this.clickList}
-          indexKey={this.state.indexKey}/>
+          />
         </section>
         <section id='map'>
         <Map
@@ -85,6 +87,7 @@ class App extends Component {
           lng={this.state.lng}
           zoom={this.state.zoom}
           locations={this.state.filtered}
+          indexKey={this.state.indexKey}
           />
         </section>
 

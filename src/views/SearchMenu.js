@@ -3,6 +3,7 @@ import ToggleButton from '../Components/ToggleButton'
 
 class SearchMenu extends Component {
   state = {
+    open: false,
     query: ''
   }
 
@@ -17,6 +18,7 @@ class SearchMenu extends Component {
       <div id='searchMenu'>
       {/* Toggle component */}
         <ToggleButton
+          open={this.props.open}
           toggleOpen={this.props.toggleOpen}/>
       {/* Menu */}
         <div id='menu-wrap' className="menu-wrap">
@@ -37,7 +39,7 @@ class SearchMenu extends Component {
                       key={i}
                       onClick={e => this.props.clickList(i)}
                       className="locationBtn">
-                        {location.name}</button>
+                      {location.name}</button>
                   </li>
                 )
               })}
