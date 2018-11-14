@@ -84,7 +84,7 @@ class App extends Component {
           open={this.state.open}
           />
         </section>
-        <section id='map'>
+        <section role='application' id='map'>
         <Map
           lat={this.state.lat}
           lng={this.state.lng}

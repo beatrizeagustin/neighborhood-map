@@ -97,16 +97,16 @@ class MapView extends Component {
                 currentMarker: marker,
                 showingInfoWindow: true,
                 currentMarkerProps });
-          });
+          })
         } else {
           marker.setAnimation(this.props.google.maps.Animation.DROP)
           this.setState({
             currentMarker: marker,
             showingInfoWindow: true,
             currentMarkerProps
-          })
+          });
         }
-      });
+      })
   }
 
 
@@ -178,7 +178,6 @@ class MapView extends Component {
       <Map
         google={this.props.google}
         onReady={this.mapLoaded}
-        role='application'
         aria-label='map'
         zoom={this.props.zoom}
         style={styles}
