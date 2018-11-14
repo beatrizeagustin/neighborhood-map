@@ -106,6 +106,9 @@ class MapView extends Component {
             currentMarkerProps
           });
         }
+      }).catch(err => {
+        // handle API fetch errors
+        alert('API not retrieved, please check API key and reload')
       })
   }
 

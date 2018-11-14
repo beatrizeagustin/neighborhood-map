@@ -21,6 +21,10 @@ class App extends Component {
       ...this.state,
       filtered: this.filtering(this.state.location, '')
     });
+    // dispay message if failed to load
+    window.gm_authFailure=()=>{
+       alert('GoogleMaps API failed to load, please check API key and reload');
+    };
   }
 
 /* constructor(props){
