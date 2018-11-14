@@ -8,7 +8,9 @@ class SearchMenu extends Component {
 
 
   updateQuery = (query) => {
-    this.setState({ query: query})
+    // pass query to filtering()
+    this.setState({ query: query});
+    this.props.filtering(query);
 };
   render() {
     return (

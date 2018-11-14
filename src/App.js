@@ -10,13 +10,14 @@ class App extends Component {
     lat: 	37.786424,
     lng:  -122.451802,
     zoom: 16,
-    location: locations
+    location: locations,
+    filtered: null
   }
-
-  component.DidMount = () => {
+  // check if component mounted and push locations value to filtered
+  componentDidMount = () => {
     this.setState({
       ...this.state,
-      filtered: this.flitering(this.state.locations, '')
+      filtered: this.filtering(this.state.location, '')
     });
   }
 
@@ -32,20 +33,21 @@ class App extends Component {
         ]
     } */
   toggleOpen = () => {
+    // toggle button and menu animation open
     let toggleButton = document.getElementById('toggle-button').classList
     let menu = document.getElementById('menu-wrap').classList
         toggleButton.toggle('open');
         menu.toggle('menu-open');
   }
-
-  updateQuery = (nQuery) => {
+  // update query and adding filtered locations
+  updateQuery = (query) => {
     this.setState({
       ...this.state,
-      i: null,
-      filtered: this.filtering(this.state.all, nQuery)
+      indexKey: null,
+      filtered: this.filtering(this.state.location, query)
     });
   }
-
+  // filtering locations to match user query
   filtering = (locations, query) => {
     return locations.filter(location => location.name.includes(query));
   }
@@ -58,15 +60,16 @@ class App extends Component {
         </div>
         <section>
          <SearchMenu
-            locations={this.state.location}
-            toggleOpen={this.toggleOpen}/>
+            locations={this.state.filtered}
+            toggleOpen={this.toggleOpen}
+            filtering={this.updateQuery}/>
         </section>
         <section id='map'>
         <Map
           lat={this.state.lat}
           lng={this.state.lng}
           zoom={this.state.zoom}
-          locations={this.state.location}
+          locations={this.state.filtered}
           />
         </section>
 
