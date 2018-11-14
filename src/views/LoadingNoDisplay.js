@@ -8,7 +8,7 @@ class LoadingNoDisplay extends Component {
   }
   // create timeout when component mounts
   componentDidMount = () => {
-    let timeout = window.setTimeout(this.errMessage, 1000);
+    let timeout = window.setTimeout(this.errMessage, 100);
     this.setState({timeout})
   }
   // clearing timeout if timeout is still running

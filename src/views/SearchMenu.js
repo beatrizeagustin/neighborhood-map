@@ -15,7 +15,7 @@ class SearchMenu extends Component {
 };
   render() {
     return (
-      <div id='searchMenu'>
+      <aside id='searchMenu'>
       {/* Toggle component */}
         <ToggleButton
           open={this.props.open}
@@ -46,7 +46,7 @@ class SearchMenu extends Component {
             </ul>
           </div>
         </div>
-      </div>
+      </aside>
     )
   }
 }

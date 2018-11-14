@@ -9,5 +9,6 @@ How to run:
 Built with:
  - React.js
  - google-maps-react
+    - install with `npm install google-maps-react`
     - utilizes GoogleApiWrapper, LoadingContainer, Maps, and InfoWindow
  - Foursquare API

@@ -133,7 +133,7 @@ class MapView extends Component {
     // create new markers iterating through locations (json) object
     let markers = locations.map((location, i) => {
       let mProps = {
-        key: i,
+        key: i, i,
         name: location.name,
         position: location.location
       };
