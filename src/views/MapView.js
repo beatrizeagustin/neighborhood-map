@@ -152,6 +152,7 @@ class MapView extends Component {
   //  console.log(amProps)
     return (
       // components from google-maps-react pkg
+      // entire app accessible from aria-lable and role!
       <Map
         google={this.props.google}
         onReady={this.mapLoaded}

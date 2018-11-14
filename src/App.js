@@ -3,7 +3,7 @@ import Map from './views/MapView'
 import SearchMenu from './views/SearchMenu'
 import locations from './data/locations.json'
 import './App.css';
-
+// tutorial from theinfinitemonkey @ github
 class App extends Component {
 
   state = {
@@ -11,6 +11,13 @@ class App extends Component {
     lng:  -122.451802,
     zoom: 16,
     location: locations
+  }
+
+  component.DidMount = () => {
+    this.setState({
+      ...this.state,
+      filtered: this.flitering(this.state.locations, '')
+    });
   }
 
 /* constructor(props){
@@ -29,6 +36,18 @@ class App extends Component {
     let menu = document.getElementById('menu-wrap').classList
         toggleButton.toggle('open');
         menu.toggle('menu-open');
+  }
+
+  updateQuery = (nQuery) => {
+    this.setState({
+      ...this.state,
+      i: null,
+      filtered: this.filtering(this.state.all, nQuery)
+    });
+  }
+
+  filtering = (locations, query) => {
+    return locations.filter(location => location.name.includes(query));
   }
 
   render() {
