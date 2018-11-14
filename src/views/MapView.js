@@ -170,7 +170,7 @@ class MapView extends Component {
     }
     // set currentMarkerProps to variable to avoid repetition
     // ******* amProps is null - either from keys or animation
-    let amProps = this.state.currentMarkerProps;
+    let cmProps = this.state.currentMarkerProps;
   //  console.log(amProps)
     return (
       // components from google-maps-react pkg
@@ -200,12 +200,12 @@ class MapView extends Component {
         >
           <div>
             {/* compare data from json to FS and use json as fallback */}
-            <h4>{amProps && amProps.name}</h4>
+            <h4>{cmProps && cmProps.name}</h4>
             {/* amProps && amProps.url ? (<a href={amProps.url}>site</a>) : '' */}
-            {amProps && amProps.images ? (<div>
+            {cmProps && cmProps.images ? (<div>
               <img
-                alt={amProps.name + " food picture"}
-                src={amProps.images.items[0].prefix + "100x100" + amProps.images.items[0].suffix}/>
+                alt={cmProps.name + " food picture"}
+                src={cmProps.images.items[0].prefix + "100x100" + cmProps.images.items[0].suffix}/>
                 <p>Image from Foursquare</p>
               </div>) : ""}
           </div>

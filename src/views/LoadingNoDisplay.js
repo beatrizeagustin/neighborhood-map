@@ -23,6 +23,7 @@ class LoadingNoDisplay extends Component {
   render() {
     return (
       <div>
+       {/* if show is true, show network error message, otherwise show map loading */}
         {this.state.show ? (
           <div>
             <h1>Oh no! Map didn't load</h1>

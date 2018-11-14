@@ -60,7 +60,7 @@ class App extends Component {
   filtering = (locations, query) => {
     return locations.filter(location => location.name.toLowerCase().includes(query.toLowerCase()));
   }
-
+  // passes clicked index and sets state to match markers index to list index
   clickList = (index) => {
     this.setState({
       indexKey: index,
