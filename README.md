@@ -1,7 +1,7 @@
 ## Neighborhood Map app
 Capstone project for Udacity's Front End Development Nanodegree Program
 
-note: Google Maps API and Foursquare API keys that are being used in this project have *limited* API requests as they're being used for development purposes only.
+**note**: Google Maps API and Foursquare API keys that are being used in this project have **limited** API requests as they're being used for development purposes only.
 
 Service Workers are registered, but to use them in development, refer to the notes in serviceWorker.js
 
@@ -21,4 +21,5 @@ Google Maps API: [https://console.cloud.google.com](https://console.cloud.google
   - click 'Select a project' and create a new project
   - search for Google Maps APIs and enable them
   - click on Credentials and create your KEY
+
 Foursquare API: [https://developer.foursquare.com](https://developer.foursquare.com)
