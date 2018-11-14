@@ -3,6 +3,7 @@ import Map from './views/MapView'
 import SearchMenu from './views/SearchMenu'
 import locations from './data/locations.json'
 import './App.css';
+import './responsive.css'
 // tutorial from theinfinitemonkey @ github
 class App extends Component {
 
