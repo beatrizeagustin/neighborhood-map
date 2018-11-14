@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { GoogleApiWrapper, Map, InfoWindow } from 'google-maps-react'
+import LoadingNoDisplay from './LoadingNoDisplay'
 
 // tutorial from https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react
 // and theinfinitemonkey @ github
@@ -24,7 +25,6 @@ class MapView extends Component {
   }
 
   componentWillReceiveProps = (props) => {
-    this.setState({firstDrop: false});
     // if the number of locations doesnt match, so update the markers
     if (this.state.markers.length !== props.locations.length) {
       this.onClose();
@@ -214,7 +214,8 @@ class MapView extends Component {
     );
   }
 }
-
+// custom loading and error handling
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCiFdRLOziH2iNRsSM-IGe0oo2CllZs6tA'
+  apiKey: 'AIzaSyCiFdRLOziH2iNRsSM-IGe0oo2CllZs6tA',
+  LoadingContainer: LoadingNoDisplay
 })(MapView)

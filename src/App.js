@@ -39,7 +39,7 @@ class App extends Component {
     let menu = document.getElementById('menu-wrap').classList
         toggleButton.toggle('open');
         menu.toggle('menu-open');
-    // check if class 'open' exist 
+    // check if class 'open' exist
     if (document.body.classList.contains('open'))
     this.setState({
       // sets opposite of open's state
@@ -72,7 +72,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-title">
-          <h1>Laurel Village Neighborhood Shops</h1>
+          <h1>Laurel Village Shops</h1>
         </div>
         <section id="SearchMenu">
         <SearchMenu
