@@ -37,6 +37,11 @@ class App extends Component {
         <div className="App-title">
           <h1>Laurel Village Neighborhood Shops</h1>
         </div>
+        <section>
+         <SearchMenu
+            locations={this.state.location}
+            toggleOpen={this.toggleOpen}/>
+        </section>
         <section id='map'>
         <Map
           lat={this.state.lat}
@@ -45,11 +50,7 @@ class App extends Component {
           locations={this.state.location}
           />
         </section>
-        <section>
-         <SearchMenu
-            locations={this.state.location}
-            toggleOpen={this.toggleOpen}/>
-        </section>
+
       </div>
     );
   }

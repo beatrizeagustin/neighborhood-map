@@ -12,24 +12,37 @@ ul li a {
 }
 #map {
   width: 100%;
-  height: 50%;
+  height: 100%;
+  position: absolute;
 }
 /* TOGGLE BUTTON */
-.toggle-button {
+.toggle-wrapper {
   position: absolute;
   top: 0;
   margin: 25px;
-  width: 20px;
-  height: 40px;
-  padding: 4px;
+  width: 30px;
+  height: 32px;
+  padding: 1px;
   transition: .25s;
   z-index: 100;
+  background-color: transparent;
+  border: none;
+}
+
+.toggle-button {
+  position: relative;
+  width: 0px;
+  height: 40px;
+  padding: 7px;
+  transition: .25s;
+  z-index: 100;
+  background-color: transparent;
 }
 
 .toggle-button .menu-bar {
   position: absolute;
   border-radius: 2px;
-  width: 80%;
+  width: 20px;
   transition: .5s;
 }
 

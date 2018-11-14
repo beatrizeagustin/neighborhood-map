@@ -144,7 +144,7 @@ class MapView extends Component {
 
     const styles = {
       width: '100%',
-      height: '75%'
+      height: '100%'
     }
     // set currentMarkerProps to variable to avoid repetition
     // ******* amProps is null - either from keys or animation

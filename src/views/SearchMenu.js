@@ -13,7 +13,7 @@ class SearchMenu extends Component {
   render() {
     return (
       <div id='searchMenu'>
-      {/* Toggle component  */}
+      {/* Toggle component */}
         <ToggleButton
           toggleOpen={this.props.toggleOpen}/>
       {/* Menu */}
