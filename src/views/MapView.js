@@ -5,9 +5,9 @@ import LoadingNoDisplay from './LoadingNoDisplay'
 // tutorial from https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react
 // and theinfinitemonkey @ github
 
-const FSCLIENT = '11HUZWWZBSADCCJDO1P0KMUPT142BN4JIAMO4BKNEO03KAD2'
-const FSSECRET = 'ST31PITHE3B31A2FHGCXFLN2GGEVXHGBZCWAXYHHSGXT5NNC'
-const FSVERSION = '20181112'
+const FSCLIENT = '3U5WCEV2GRJ2PRRUCPCPVY32FV3P4XUEJ23HYRA4Z1QP43MW'
+const FSSECRET = 'KQAWSE0XOSX1QJ1KTN4SF5BANKAZEQ3QDNEAEM5AQKNWB0OB'
+const FSVERSION = '20181114'
 
 class MapView extends Component {
   state = {
