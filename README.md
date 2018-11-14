@@ -17,6 +17,7 @@ Built with:
  - Foursquare API
 
 Create your own API keys here:
+
 Google Maps API: [https://console.cloud.google.com](https://console.cloud.google.com)
   - click 'Select a project' and create a new project
   - search for Google Maps APIs and enable them
