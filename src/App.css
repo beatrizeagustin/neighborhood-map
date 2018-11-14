@@ -10,9 +10,10 @@ ul li a {
   position: relative;
   text-align: center;
 }
+
 #map {
   width: 100%;
-  height: 100%;
+  height: 85%;
   position: absolute;
 }
 /* TOGGLE BUTTON */

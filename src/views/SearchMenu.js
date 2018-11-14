@@ -7,10 +7,10 @@ class SearchMenu extends Component {
   }
 
 
-  updateQuery = (query) => {
+  updateQuery = (nQuery) => {
     // pass query to filtering()
-    this.setState({ query: query});
-    this.props.filtering(query);
+    this.setState({ query: nQuery});
+    this.props.filtering(nQuery);
 };
   render() {
     return (
@@ -35,6 +35,7 @@ class SearchMenu extends Component {
                   <li key={i}>
                     <button
                       key={i}
+                      onClick={e => this.props.clickList(i)}
                       className="locationBtn">
                         {location.name}</button>
                   </li>

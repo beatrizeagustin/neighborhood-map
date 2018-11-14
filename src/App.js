@@ -11,6 +11,7 @@ class App extends Component {
     lng:  -122.451802,
     zoom: 16,
     location: locations,
+    open: false,
     filtered: null
   }
   // check if component mounted and push locations value to filtered
@@ -38,6 +39,11 @@ class App extends Component {
     let menu = document.getElementById('menu-wrap').classList
         toggleButton.toggle('open');
         menu.toggle('menu-open');
+    this.setState({
+      // sets opposite of open's state
+      open: !this.state.open
+    })
+
   }
   // update query and adding filtered locations
   updateQuery = (query) => {
@@ -48,8 +54,15 @@ class App extends Component {
     });
   }
   // filtering locations to match user query
+  // needs toLowerCase!
   filtering = (locations, query) => {
-    return locations.filter(location => location.name.includes(query));
+    return locations.filter(location => location.name.toLowerCase().includes(query.toLowerCase()));
+  }
+
+  clickList = (index) => {
+    this.setState({
+      indexKey: index,
+      open: !this.state.open})
   }
 
   render() {
@@ -58,11 +71,13 @@ class App extends Component {
         <div className="App-title">
           <h1>Laurel Village Neighborhood Shops</h1>
         </div>
-        <section>
-         <SearchMenu
-            locations={this.state.filtered}
-            toggleOpen={this.toggleOpen}
-            filtering={this.updateQuery}/>
+        <section id="SearchMenu">
+        <SearchMenu
+          locations={this.state.filtered}
+          toggleOpen={this.toggleOpen}
+          filtering={this.updateQuery}
+          clickList={this.clickList}
+          indexKey={this.state.indexKey}/>
         </section>
         <section id='map'>
         <Map

@@ -5,7 +5,7 @@ class ToggleButton extends Component {
     return (
       <div>
       {/* hamburger animated icon */}
-      <button id="toggle-button" class="toggle-wrapper" onClick={this.props.toggleOpen}>
+      <button id="toggle-button" className="toggle-wrapper" onClick={this.props.toggleOpen}>
       <span className="toggle-button">
         <div className="menu-bar bar-top"></div>
         <div className="menu-bar bar-middle"></div>

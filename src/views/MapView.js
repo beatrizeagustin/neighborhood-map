@@ -23,6 +23,28 @@ class MapView extends Component {
   //  console.log(this.props.locations)
   }
 
+  componentWillReceiveProps = (props) => {
+    this.setState({firstDrop: false});
+    // if the number of locations doesnt match, so update the markers
+    if (this.state.markers.length !== props.locations.length) {
+      this.onClose();
+      this.setMarkers(props.locations);
+      this.setState({currentMarker: null});
+      return;
+    }
+    // if item is not the same as the active marker, close the info window
+    if (!props.indexKey || (this.state.currentMarker &&
+      (this.state.markers[props.indexKey] !== this.state.indexKey))) {
+        this.onClose();
+      }
+    // make sure there's an indexKey
+    if (props.indexKey === null || typeof(props.indexKey) === "undefined") {
+      return;
+    };
+    // if theres an indexKey, call onMarkerClick with both indexKey
+    this.onMarkerClick(this.state.markerProps[props.indexKey], this.state.markers[props.indexKey]);
+   }
+
   // sets map state and markers for location
   mapLoaded = (props, map) => {
     this.setState({map})
@@ -70,14 +92,12 @@ class MapView extends Component {
             // set states with new currentMarkerProps
             if (this.state.currentMarker)
               this.state.currentMarker.setAnimation(null);
-              marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
               this.setState({
                 currentMarker: marker,
                 showingInfoWindow: true,
                 currentMarkerProps });
           });
         } else {
-          marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
           this.setState({
             currentMarker: marker,
             showingInfoWindow: true,
@@ -92,7 +112,7 @@ class MapView extends Component {
   onClose = props => {
     // closes active marker and stops animations
     if (this.state.showingInfoWindow) {
-      this.state.currentMarker.setAnimation(null);
+    //  this.state.currentMarker.setAnimation(null);
       this.setState({
         showingInfoWindow: false,
         currentMarkerProps: null,
